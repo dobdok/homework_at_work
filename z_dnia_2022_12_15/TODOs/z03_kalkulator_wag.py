@@ -72,10 +72,7 @@ def uinput():
         else:
             print('It is not a correct value.')
 
-    day_l = []
-    month_l = []
     weight_l = []
-    year_l = []
     # utworzyć słownik, gdzie {day_l/month_l/year_l : weight_l}
     while True:
         try:
@@ -89,7 +86,6 @@ def uinput():
             dates_l = []
             dates = f'Date: {str(year)}/{str(month)}/{str(day)}'
 
-            weights_l = []
             weights = f'Weight: {weight}'
 
             dates_l.append(dates)
@@ -109,48 +105,3 @@ def uinput():
 
 
 uinput()
-
-# def uinput():
-#     slownik_wag_a_dat = {}
-#
-#     uinput = input('nr:  ')
-#     while True:
-#         if uinput == 'Done':
-#             print('Done')
-#         else:
-#             isinstance(uinput, (int, float))
-#             print('int or float')
-#             return uinput
-
-# elif isinstance(uinput, (int, float)):
-#     print('int or float')
-# elif uinput == '3':
-#     pass
-# else:
-#     pass
-
-
-# def check_user_input():
-#     x = input('x:  ')
-#     mlist = []
-#
-#     while True:
-#         try:
-#             # Convert it into integer
-#             val = int(x) or float(x)
-#             mlist.append(x)
-#             return val
-#         except ValueError:
-#             try:
-#                 val = "Done"
-#                 mlist.append(x)
-#                 return val
-#             except ValueError:
-#                 print("No.. input is not a number. It's a string")
-#
-#         break
-#
-#     print(mlist)
-
-
-# check_user_input()
