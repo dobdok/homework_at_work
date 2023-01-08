@@ -42,11 +42,6 @@
 
 
 def uinput():
-    day_month = []
-    day_l = []
-    month_l = []
-    weight_l = []
-    year_l = []
     # utworzyć słownik, gdzie {day_l/month_l/year_l : weight_l}
 
     welcometxt = """
@@ -86,7 +81,7 @@ def uinput():
             dates_l = []
             dates = f'Date: {str(year)}/{str(month)}/{str(day)}'
 
-            weights = f'Weight: {weight}'
+            weights = f'Weight: {str(weight)}'
 
             dates_l.append(dates)
             weight_l.append(weights)
@@ -94,14 +89,11 @@ def uinput():
             date_wage = {key: value for key, value in zip(dates_l, weight_l)}
             print('date_wage', date_wage)
 
+            continue
 
-
-
-
-
-            break
         except ValueError:
             print('Please input numbers only.')
+    print('date_wage', date_wage)
 
 
 uinput()
