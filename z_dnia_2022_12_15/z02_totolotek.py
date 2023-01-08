@@ -28,8 +28,8 @@ def usr_inp():
 
     inp_list = [int(inp1), int(inp2), int(inp3), int(inp4), int(inp5), int(inp6)]
 
-    print('inp_list', inp_list, type(inp_list))
-    print('losy', losy, type(losy))
+    # print('inp_list', inp_list, type(inp_list))
+    # print('losy', losy, type(losy))
 
     temp = set(inp_list)
     res = [i for i, val in enumerate(losy) if val in temp]
