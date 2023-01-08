@@ -51,12 +51,12 @@ def uinput():
 
     welcometxt = """
     Keep dates and weight recorded.
-    For input please type:  "I".
-    To see statistics, input:  "Sum".
-    To close the program, type:  "Done".
+    Type:
+    > For input:  "I".
+    > To see statistics:  "Sum".
+    > To close the program:  "Done".
     Have a nice day!
     Type:  """
-
 
     while True:
         usr_input = input(welcometxt)
@@ -65,14 +65,13 @@ def uinput():
                 print('Program finished.')
                 quit()
             elif usr_input == 'I':
-                pass
+                break
             elif usr_input == 'Sum':
                 pass
                 # to do the summary calculations
         else:
             print('It is not a correct value.')
 
-    day_month = []
     day_l = []
     month_l = []
     weight_l = []
@@ -80,40 +79,36 @@ def uinput():
     # utworzyć słownik, gdzie {day_l/month_l/year_l : weight_l}
     while True:
         try:
-            weight = float(input('Input weight:  '))
-            weight_l.append(weight)
-            day = int(input('Input number of te day in month:  '))
-            day_l.append(day)
-            month = int(input('Input the number of the month?: '))
-            month_l.append(month)
-            year = int(input('Input the year?:  '))
-            year_l.append(year)
+            weight = float(input('Weight:  '))
 
-            day_month[month][day][year] = weight
+            day = int(input('Day in month:  '))
+            month = int(input('Month (number): '))
+            year = int(input('Year:  '))
+
+            # utworzyć listę, gdzie jeden element to będzie     day_l/month_l/year_l
+            dates_l = []
+            dates = f'Date: {str(year)}/{str(month)}/{str(day)}'
+
+            weights_l = []
+            weights = f'Weight: {weight}'
+
+            dates_l.append(dates)
+            weight_l.append(weights)
+
+            date_wage = {key: value for key, value in zip(dates_l, weight_l)}
+            print('date_wage', date_wage)
+
+
+
+
+
+
             break
         except ValueError:
             print('Please input numbers only.')
 
 
 uinput()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # def uinput():
 #     slownik_wag_a_dat = {}
@@ -127,13 +122,12 @@ uinput()
 #             print('int or float')
 #             return uinput
 
-    # elif isinstance(uinput, (int, float)):
-    #     print('int or float')
-    # elif uinput == '3':
-    #     pass
-    # else:
-    #     pass
-
+# elif isinstance(uinput, (int, float)):
+#     print('int or float')
+# elif uinput == '3':
+#     pass
+# else:
+#     pass
 
 
 # def check_user_input():
