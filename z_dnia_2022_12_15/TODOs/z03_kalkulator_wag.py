@@ -68,13 +68,16 @@ def uinput():
 
 def date_weight_sum() -> int:
     x = 5
-    print(x)   # to test if it works TODO
+    if x == 5:
+        print(x)  # to test if it works TODO
+        exit()
+
 
 ###
 
 def d_w_inputs():
-    weight_l = []
     # utworzyć słownik, gdzie {day_l/month_l/year_l : weight_l}
+    mdict = {}
     while uinput():
         try:
             weight = input('Weight:  ')
@@ -106,51 +109,27 @@ def d_w_inputs():
                     date_weight_sum()
 
             # utworzyć listę, gdzie jeden element to będzie     day_l/month_l/year_l
-            dates_l = []
             dates = f'{str(year)}/{str(month)}/{str(day)}'
 
             weights = f'{str(weight)} kg'
 
-            # dates_l.append(dates)
-            # weight_l.append(weights)
 
-            # date_wage = {key: value for key, value in zip(dates_l, weight_l)}
-            # date_wage2 = f'{dates} {weights}'
             mdict = {dates: weights}
-            # print('mdict', mdict)
-
-            # print('date_wage: ', date_wage)
             print(f'You added {dates} {weights}')
-            # print(date_wage)
-            # print(date_wage2)
-
-            # continue
-            # return mdict
             continue
-            # return date_wage2
 
         except ValueError:
             print('Please input numbers only.')
 
-    # dates_l.append(dates)
-    # weight_l.append(weights)
-    #
-    # date_wage = {key: value for key, value in zip(dates_l, weight_l)}
-    # print('date_wage', date_wage)
-    #
-    # return date_wage
     return mdict
 
 
+###
+
 def run_program():
     while d_w_inputs():
-        mlist = []
-        mlist.append(d_w_inputs())
+        mlist = [d_w_inputs()]
         print(mlist)
 
 
 run_program()
-
-
-
-
