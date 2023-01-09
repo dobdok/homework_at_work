@@ -32,12 +32,6 @@
        Nov:
        Dec:
        2022: 1258.8 kg
-
-
-
-
-
-
 """
 
 
@@ -49,7 +43,7 @@ def uinput():
     Type:
     > For input:  "I".
     > To see statistics:  "Sum".
-    > To close the program:  "Done".
+    > To close the program (You can type it any time. Data then will be saved partially.):  "Done".
     Have a nice day!
     Type:  """
 
@@ -62,38 +56,101 @@ def uinput():
             elif usr_input == 'I':
                 break
             elif usr_input == 'Sum':
-                pass
+                date_weight_sum()
                 # to do the summary calculations
         else:
             print('It is not a correct value.')
 
+    return usr_input
+
+    ###
+
+
+def date_weight_sum() -> int:
+    x = 5
+    print(x)   # to test if it works TODO
+
+###
+
+def d_w_inputs():
     weight_l = []
     # utworzyć słownik, gdzie {day_l/month_l/year_l : weight_l}
-    while True:
+    while uinput():
         try:
-            weight = float(input('Weight:  '))
+            weight = input('Weight:  ')
+            if weight in weight:
+                if weight == 'Done':
+                    quit()
+                elif weight == 'Sum':
+                    date_weight_sum()
 
-            day = int(input('Day in month:  '))
-            month = int(input('Month (number): '))
-            year = int(input('Year:  '))
+            day = input('Day in month:  ')
+            if day in day:
+                if day == 'Done':
+                    quit()
+                elif day == 'Sum':
+                    date_weight_sum()
+
+            month = input('Month (number): ')
+            if month in month:
+                if month == 'Done':
+                    quit()
+                elif month == 'Sum':
+                    date_weight_sum()
+
+            year = input('Year:  ')
+            if year in year:
+                if year == 'Done':
+                    quit()
+                elif year == 'Sum':
+                    date_weight_sum()
 
             # utworzyć listę, gdzie jeden element to będzie     day_l/month_l/year_l
             dates_l = []
-            dates = f'Date: {str(year)}/{str(month)}/{str(day)}'
+            dates = f'{str(year)}/{str(month)}/{str(day)}'
 
-            weights = f'Weight: {str(weight)}'
+            weights = f'{str(weight)} kg'
 
-            dates_l.append(dates)
-            weight_l.append(weights)
+            # dates_l.append(dates)
+            # weight_l.append(weights)
 
-            date_wage = {key: value for key, value in zip(dates_l, weight_l)}
-            print('date_wage', date_wage)
+            # date_wage = {key: value for key, value in zip(dates_l, weight_l)}
+            # date_wage2 = f'{dates} {weights}'
+            mdict = {dates: weights}
+            # print('mdict', mdict)
 
+            # print('date_wage: ', date_wage)
+            print(f'You added {dates} {weights}')
+            # print(date_wage)
+            # print(date_wage2)
+
+            # continue
+            # return mdict
             continue
+            # return date_wage2
 
         except ValueError:
             print('Please input numbers only.')
-    print('date_wage', date_wage)
+
+    # dates_l.append(dates)
+    # weight_l.append(weights)
+    #
+    # date_wage = {key: value for key, value in zip(dates_l, weight_l)}
+    # print('date_wage', date_wage)
+    #
+    # return date_wage
+    return mdict
 
 
-uinput()
+def run_program():
+    while d_w_inputs():
+        mlist = []
+        mlist.append(d_w_inputs())
+        print(mlist)
+
+
+run_program()
+
+
+
+
