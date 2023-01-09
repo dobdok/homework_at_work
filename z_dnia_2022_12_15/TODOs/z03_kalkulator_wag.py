@@ -33,6 +33,7 @@
        Dec:
        2022: 1258.8 kg
 """
+import csv
 
 
 def uinput():
@@ -65,28 +66,15 @@ def uinput():
 
     ###
 
-def date_weight_sum():
-    print('Summary:')
 
-    output = d_w_inputs()
-    print(output)
-
-    # for i in d_w_inputs():
-    #     print(i)
-
-    # x = d_w_inputs()
-    # print(x)
-
-    # x = {d_w_inputs()}
-    # print('x = {d_w_inputs}', x)
-    # exit()
+date_weight_dict = {}
 
 
 ###
 
 def d_w_inputs() -> dict:
     # utworzyć słownik, gdzie {day_l/month_l/year_l : weight_l}
-    date_weight_dict = {}
+
     date_l = []
     wei_l = []
 
@@ -98,15 +86,15 @@ def d_w_inputs() -> dict:
                     quit()
                 elif weight == 'Sum':
                     date_weight_sum()
-                elif (weight != 'Done' or weight != 'Sum') and int(weight) not in range(1, 9999):
-                    print('It is not a correct value.')
-                    continue
-                elif (weight != 'Done' or weight != 'Sum') and type(int(weight)) == str:
-                    print('It is not a correct value.')
-                    continue
-
-            else:
-                print('It is not a correct value.')
+            #     elif (weight != 'Done' or weight != 'Sum') and int(weight) not in range(1, 9999):
+            #         print('It is not a correct value.')
+            #         continue
+            #     elif (weight != 'Done' or weight != 'Sum') and type(float(weight)) == str:
+            #         print('It is not a correct value.')
+            #         continue
+            #
+            # else:
+            #     print('It is not a correct value.')
 
             day = input('Day in month:  ')
             if day in day:
@@ -150,22 +138,38 @@ def d_w_inputs() -> dict:
             # print(date_l)
             wei_l.append(weights)
             # print(wei_l)
+            # return {date_l[i]: wei_l[i] for i in range(len(date_l))}
             date_weight_dict = {date_l[i]: wei_l[i] for i in range(len(date_l))}
-            # print(date_weight_dict)
-            # return date_weight_dict
+            print(date_weight_dict)
+
+            import csv
+
+            with open('test6.csv', 'w') as f:
+                for key in date_weight_dict.keys():
+                    f.write("%s, %s\n" % (key, date_weight_dict[key]))
+                    ## when "Sum" tworzy plik
 
         except ValueError:
             print('Please input numbers only.')
             uinput()
 
+###
 
-        print(date_weight_dict)
-        return date_weight_dict
+def date_weight_sum():
+    print('Summary:')
+    with open('test6.csv', 'r') as f:
+        csvFile = csv.reader(f)
+
+        for lines in csvFile:
+            print(lines)
+    exit()
+
+
+
+    # print(date_weight_dict, 'summary: date_weight_dict')
 
 
 ###
-# d_w_inputs()
-
 
 def run_program():
     uinput()
