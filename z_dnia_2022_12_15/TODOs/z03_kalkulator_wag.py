@@ -140,9 +140,7 @@ def d_w_inputs() -> dict:
             # print(wei_l)
             # return {date_l[i]: wei_l[i] for i in range(len(date_l))}
             date_weight_dict = {date_l[i]: wei_l[i] for i in range(len(date_l))}
-            print(date_weight_dict)
-
-            import csv
+            print(date_weight_dict)  # printed temporarily for verfication
 
             with open('test6.csv', 'w') as f:
                 for key in date_weight_dict.keys():
@@ -153,6 +151,7 @@ def d_w_inputs() -> dict:
             print('Please input numbers only.')
             uinput()
 
+
 ###
 
 def date_weight_sum():
@@ -162,9 +161,13 @@ def date_weight_sum():
 
         for lines in csvFile:
             print(lines)
+
+    import pandas
+
+    # csvFile = pandas.read_csv('test6.csv', index_col=0)
+    #
+    # print(csvFile)
     exit()
-
-
 
     # print(date_weight_dict, 'summary: date_weight_dict')
 
