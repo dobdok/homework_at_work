@@ -67,7 +67,12 @@ def name_grade_inputs():
         except ValueError:
             print('')
 
-        print(f'Mid grades per students class:  {mid}.')
+        print('*'*20)
+        print(f'Mid grades per one student:  tbd')
+        print('*'*20)
+        print(f'Mid grades per students class:  {mid}')
+        print('*'*20)
+
         quit()
 
 
