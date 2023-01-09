@@ -65,7 +65,6 @@ def uinput():
 
     ###
 
-
 def date_weight_sum():
     print('Summary:')
 
