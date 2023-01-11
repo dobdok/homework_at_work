@@ -66,6 +66,9 @@ def uinput():
 
     ###
 
+def cc(data):
+    print(f'cc(data): {data}')
+    print(f'cc(data): {type(data)}')
 
 date_weight_dict = {}
 
@@ -118,7 +121,7 @@ def d_w_inputs() -> dict:
                 elif month == 'Sum':
                     date_weight_sum()
                 elif int(month) > 12 or int(month) < 1:
-                    print('Please input numbers  between 1 and 31 only.')
+                    print('Please input numbers  between 1 and 12 only.')
                     uinput()
 
             year = input('Year:  ')
@@ -140,7 +143,9 @@ def d_w_inputs() -> dict:
             # print(wei_l)
             # return {date_l[i]: wei_l[i] for i in range(len(date_l))}
             date_weight_dict = {date_l[i]: wei_l[i] for i in range(len(date_l))}
-            print(date_weight_dict)  # printed temporarily for verfication
+            # print(date_weight_dict)  # printed temporarily for verfication
+
+            cc(date_weight_dict)
 
             with open('test6.csv', 'w') as f:
                 for key in date_weight_dict.keys():
@@ -154,6 +159,8 @@ def d_w_inputs() -> dict:
 
 ###
 
+
+
 def date_weight_sum():
     print('Summary:')
     with open('test6.csv', 'r') as f:
@@ -166,7 +173,7 @@ def date_weight_sum():
 
     # csvFile = pandas.read_csv('test6.csv', index_col=0)
     #
-    # print(csvFile)
+    # print(csvFile) ## pozbyć się indeksowania?
     exit()
 
     # print(date_weight_dict, 'summary: date_weight_dict')
