@@ -1,4 +1,5 @@
 # chr, ord
+
 def inputowanie():
     tekst = input('Wpisz:  ')
 
@@ -13,7 +14,7 @@ def wyswietleniezasz():
     for elem in inp:
         elem2 = ord(elem)
         lista.append(elem2)
-    # print(lista)
+    print(lista)
     return lista
 
 
@@ -22,23 +23,23 @@ def szyfrowanie():
     for elem in inp:
         elem2 = ord(elem) - 3  # MINUS 3
         lista.append(elem2)
-    # print(lista)
+    print(lista)
     return lista
 
 
 def przechow(arg):
-    print(f'przechow funk  {arg}')
+    # print(f'przechow funk  {arg}')
     return (list(arg))
-
-
-asci = przechow(szyfrowanie())
 
 
 def nalitery():
     lista3 = []
-    for elem in asci:
+    # asci = przechow(szyfrowanie())
+    # for elem in asci:
+    for elem in przechow(szyfrowanie()):
         elem2 = chr(elem)
         lista3.append(elem2)
+    print(lista3)
 
     return lista3
 
