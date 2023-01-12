@@ -61,7 +61,7 @@
 # program losuje 6 liczb od 1 do 49
 # program prosi o wprowadzenie 6 liczb od 1 do 49 przez użytkownika
 # program zwraca ilość "trafień"
---TODO
+--done --
 
 
 # zadanie 3:
@@ -121,7 +121,7 @@
         po zakończeniu wprowadzania danych 
         zwraca średnią ocen dla każdego studenta oraz 
         dla całej klasy [słowniki do wykorzystania]
-TODO
+--TODO
 
 
 # ------------
