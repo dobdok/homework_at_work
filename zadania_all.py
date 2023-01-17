@@ -7,6 +7,7 @@
 #     • program pyta użytkownika o rodzaj konwersji
 #     • prosi o podanie wartości do konwersji
 #     • zwraca wynik
+--done --
 
 
 # zadanie 2:
@@ -15,6 +16,7 @@
 #     • prosi o dwie liczby dla tego działania
 #     • zwraca wynik
 #     • program kończy swoje działanie dopiero na życzenie użytkownika a nie po zwróceniu wyniku
+--done --
 
 
 # zadanie 3:
@@ -25,6 +27,7 @@
         # uwzględnić:
         # - zabezpieczenie przed nieodpowiednim wypelnieniem pola
         # - zabezpieczenie kiedy użytkownik pod nieparzystą
+--done --
 
 
 # zadanie 4:
@@ -35,7 +38,10 @@
 #     • jeżeli użytkownik nie zgadnie liczby w 3 próbach, program daje podpowiedzi w postaci, liczba do zgadnięcia jest większa/mniejsza niż ta co podałeś
         # uwzględnić:
         # - zabezpieczenie przed nieodpowiednim wypelnieniem pola
-        # - zminimalizować ilość kodu, napisane za dużo"""
+        # - zminimalizować ilość kodu, napisane za dużo
+--done --
+"""
+
 
 
 
@@ -47,6 +53,7 @@
 # zadanie 1:
 # algorytm sortowania bąbelkowego - zapoznać sie z zaimplementować
 # program wczytuje od użytkownika dowolną liczbę liczb i sortuje je z użyciem algorytmu sortowania bąbelkowego
+--TODO
 
 
 # zadanie 2:
@@ -54,6 +61,7 @@
 # program losuje 6 liczb od 1 do 49
 # program prosi o wprowadzenie 6 liczb od 1 do 49 przez użytkownika
 # program zwraca ilość "trafień"
+--done --
 
 
 # zadanie 3:
@@ -62,7 +70,10 @@
 # program prosi o użytkownika o podanie dnia i wagi w danym dniu
 # po zakończeniu wprowadzania danych (na życzenie używkonika) program wyświetla statystyki
 # średnia, najwyższa i najniższa waga w każdym miesiącu (jeżeli brak danych dla konkretnego miesiąca to informacja o tym)
-# średnia, najniższa, najwyższa waga w roku"""
+# średnia, najniższa, najwyższa waga w roku
+--TODO
+"""
+
 
 
 
@@ -74,27 +85,43 @@
 # dzień roku
 # napisz funkcję który jako parametr przyjmie rok i zwróci informację czy rok ten jest przestępny czy nie
 # dodaj funkcję która jako parametr przyjmuje rok i miesiąc, a jako wynik zwraca informację ile dni jest w danym miesiącu
-# napisz funkcję która przyjmuje trzy parametry - rok, miesiąc i dzień, sprawdzi czy wprowadzone dane są poprawne, jeżeli nie zwróci wartość None, jeżeli są poprawne zwróci informację który to dzień roku
+# napisz funkcję która 
+        przyjmuje trzy parametry - rok, miesiąc i dzień, 
+        sprawdzi czy wprowadzone dane są poprawne, 
+        jeżeli nie zwróci wartość None, 
+        jeżeli są poprawne zwróci informację który to dzień roku
+--done -- 
+
 
 # ------------
 
 # zadanie 2:
 # napisz funkcję która sprawdzi czy liczba jest pierwsza i zwróci wartość True lub False
+--done --
 
 # ------------
 
 # zadanie 3:
 # napisz funkcję obliczającą silnie, funkcja przyjmuje liczbę całkowitą i oblicza silnię dla niej + wersja rekurencyjna
+--TODO
 
 # ------------
 
 # zadanie 4:
 # funkcja obliczająca ciąg fibonacciego z wykorzystaniem rekurencji
+--TODO
 
 # ------------
 
 # zadanie 5:
-# napisz program który poprosi o wprowadzenie imienia studenta oraz oceny jaką uzyskał, "x" kończy wprowadzanie danych, po zakończeniu wprowadzania danych zwraca średnią ocen dla każdego studenta oraz dla całej klasy [słowniki do wykorzystania]
+# napisz program który poprosi o wprowadzenie 
+                                imienia studenta oraz 
+                                oceny jaką uzyskał, 
+                                "x" kończy wprowadzanie danych,
+        po zakończeniu wprowadzania danych 
+        zwraca średnią ocen dla każdego studenta oraz 
+        dla całej klasy [słowniki do wykorzystania]
+--TODO
 
 
 # ------------
@@ -115,7 +142,9 @@
 # jak była minimalna ilość ruchów aby wydostać się z labiryntu - dla 5 ruchów to oczywiście 5, dla 8 to 8
 # jaka była maksymalna ilość ruchów aby wydostać się z labiryntu - dla poziomu łatwego to 10 (5 ruchów i jak zawsze pierwszy byłby zły to za 10 razem użytkownik by się wydostał, przyjmujemy że jak użytkownik dostanie informacje że wykonany ruch jest niepoprawny to już go nie powtórzy), dla poziomu trudnego maksymalna ilość ruchów jest zależna od wylosowania możliwości na każdym z ruchów
 # jeżeli użytkownik przekroczył granice 60% ruchów pomiędzy minimalną wartością a maksymalną ruchów to gra kończy się niepowodzeniem, gracz umarł z głodu, np dla poziomu łatwego, min 5, max 10, 10 - 5 = 5, 60% z 5 = 3, 5 (min) + 3 (60%) = 8, jeżeli użytkownik w 8 ruchach nie wydostanie się to przegrywa, dla poziomu trudnego trzeba to liczyć w zależności od skomplikowania labiryntu
+--TODO
 """
+
 
 
 """
@@ -134,6 +163,8 @@ Napisz program, który będzie przypominał grę w kółko i krzyżyk
     program powtarza czynności do wykorzystania wszystkich pól
     skorzystaj z poznanych funkcji losujących aby program wybierał gdzie wstawić znak
     jeżeli nikt nie wygrał a skończyły się wolne pola, program informuje o tym użytkownika
+--TODO
+    
 
 # ------------
 
@@ -146,6 +177,7 @@ Napisać program program sprawdzający czy podany przez użytkownik ciąg znakó
     jeden ze znaków $#@
     minimum 6 znaków
     maksimum 12 znaków
+--TODO
 
 # ------------
 
@@ -156,6 +188,7 @@ Napisać program który będzie działał na zasadzie Szyfru Cezara
     Spytać o wiadomość
     Spytać o punkt przesunięcia, jeżeli uzytkownik nic nie poda to przyjmie domyślną wartość - 3
     Wyświetlić zakodowany / odkodowany tekst
+--done --
 
 # ------------
 
@@ -166,6 +199,7 @@ Napisz program, który będzie symulował zachowanie struktury danych typu "stos
     stos musi przechowywać swój aktualny stan
     możemy dodawać elementy do stosu
     możemy pobierać elementy ze stosu
+--TODO
 
 # ------------
 
@@ -180,6 +214,7 @@ Napisać program który
     wyświetlić tylko mężczyzn (z wygenerowanej listy - filter i lambda do użycia)
     wyświetlić studentów i średnią ich ocen
     wyświetlić pracowników i ich średnie zarobki
+--TODO
 
 przy implementacji zadań wykorzystać obsługę wyjątków w przypadku obsługi błędów (gdzie to potrzebne)
 
