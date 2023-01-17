@@ -24,7 +24,6 @@ import random
 direction2 = ['L', 'P']
 direction3 = ['L', 'P', 'U']
 
-
 print("""
 You are in the LABIRYNTH game. 
 In  the EASY game you have 5 moves to win the game. Your options are R for right or L for Left.
@@ -33,40 +32,70 @@ In  the HARD game you have 8 moves to win the game. Your options are R for right
 """)
 
 
-def input_easy_hard():
-    user_input_hardness = input('Type H for Hard and E for Easy:  ').lower()
-    return user_input_hardness
+def input_level():
+    user_input_level = input('Type H for Hard and E for Easy:  ').lower()
+    return user_input_level
 
-# def labirynth_easy():
-#     labirynth_list = []
-#     for i in range(5):
-#
-#         labirynth = random.choice(direction2)
-#         labirynth_list.append(labirynth)
-#     print (labirynth_list)
-#     return labirynth_list
-#
-#
-# def labirynth_hard():
-#     labirynth_list = []
-#
-#     print(labirynth_list)
-#     return labirynth_list
-game_level = input_easy_hard()
+
+game_level = input_level()
+
+moves_all = 0  # actual position
+moves_good = 0
 
 
 def labirynth_definiowanie():
-    labirynth_list = []
-    if game_level == 'e':
-        for i in range(5):
-            labirynth = random.choice(direction2)
-            labirynth_list.append(labirynth)
-    elif game_level == 'h':
-        for i in range(8):
-            labirynth = random.choice(direction3)
-            labirynth_list.append(labirynth)
-    print(labirynth_list)
-    return labirynth_list
+    ostatni_ruch = True
+    while True:
+        if game_level == 'e':
+            labirynth2 = random.choice(direction2)
+            labirynth3 = random.choice(direction3)
+        easy_game = right_left_move()
+
+
+            if easy_game == labirynth2:
+                ostatni_ruch = True
+                print('level easy ')
+                if moves_good < 5 or moves_all < 11:  # jeszcze dobrze, gra trwa
+                    pass
+                elif moves_good == 5 or moves_all < 11:  # koniec, powód wygrana
+                    print('')
+                    pass
+                elif moves_good < 5 or moves_all == 10:  # koniec, powód przegrana, za duzo ruchow
+                    print('')
+                    pass
+                else:
+                    ostatni_ruch = True
+
+
+
+
+
+
+
+
+        if game_level == 'h':
+            if easy_game == labirynth3:
+                ostatni_ruch = False
+                print('level easy ')
+
+    #
+    #     if ostatni ruch:
+    #         choice
+    #
+    #     podanie ruchu
+    #     if dobry:
+    #         ostatni_ruch = True
+    #     if zly:
+    #         ostatni_ruch = False
+
+    #     labirynth_list.append(labirynth)
+    # elif game_level == 'h':
+    #     for i in range(8):
+    #         labirynth = random.choice(direction3)
+    #         labirynth_list.append(labirynth)
+    # print(labirynth_list)
+    # return labirynth_list
+
 
 def right_left_move():
     if game_level == 'e':
@@ -78,23 +107,17 @@ def right_left_move():
         user_input_move = input('Choose your move (R/L/U):  ').lower()
         print('h')
 
-
-
     if user_input_move == 'r':
         pass
     elif user_input_move == 'l':
         pass
 
-
-
     # return user_input_move
-
-
-
 
 
 def run_labirynth():
     labirynth_definiowanie()
     right_left_move()
+
 
 run_labirynth()
