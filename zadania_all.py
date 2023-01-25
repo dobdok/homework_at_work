@@ -7,7 +7,7 @@
 #     • program pyta użytkownika o rodzaj konwersji
 #     • prosi o podanie wartości do konwersji
 #     • zwraca wynik
---done --
+--zadania_done --
 
 
 # zadanie 2:
@@ -16,7 +16,7 @@
 #     • prosi o dwie liczby dla tego działania
 #     • zwraca wynik
 #     • program kończy swoje działanie dopiero na życzenie użytkownika a nie po zwróceniu wyniku
---done --
+--zadania_done --
 
 
 # zadanie 3:
@@ -27,7 +27,7 @@
         # uwzględnić:
         # - zabezpieczenie przed nieodpowiednim wypelnieniem pola
         # - zabezpieczenie kiedy użytkownik pod nieparzystą
---done --
+--zadania_done --
 
 
 # zadanie 4:
@@ -39,7 +39,7 @@
         # uwzględnić:
         # - zabezpieczenie przed nieodpowiednim wypelnieniem pola
         # - zminimalizować ilość kodu, napisane za dużo
---done --
+--zadania_done --
 """
 
 
@@ -61,7 +61,7 @@
 # program losuje 6 liczb od 1 do 49
 # program prosi o wprowadzenie 6 liczb od 1 do 49 przez użytkownika
 # program zwraca ilość "trafień"
---done --
+--zadania_done --
 
 
 # zadanie 3:
@@ -90,14 +90,14 @@
         sprawdzi czy wprowadzone dane są poprawne, 
         jeżeli nie zwróci wartość None, 
         jeżeli są poprawne zwróci informację który to dzień roku
---done -- 
+--zadania_done -- 
 
 
 # ------------
 
 # zadanie 2:
 # napisz funkcję która sprawdzi czy liczba jest pierwsza i zwróci wartość True lub False
---done --
+--zadania_done --
 
 # ------------
 
@@ -188,7 +188,7 @@ Napisać program który będzie działał na zasadzie Szyfru Cezara
     Spytać o wiadomość
     Spytać o punkt przesunięcia, jeżeli uzytkownik nic nie poda to przyjmie domyślną wartość - 3
     Wyświetlić zakodowany / odkodowany tekst
---done --
+--zadania_done --
 
 # ------------
 

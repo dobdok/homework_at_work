@@ -17,26 +17,11 @@
        średnia, najwyższa i najniższa waga w każdym miesiącu
        informacja o braku danycnb dla miesiąca
        średnia, najniższa, najwyższa waga w roku
-       example:
-
-       Jan: 10 kg / 22.5 kg / 32 kg
-       Feb:
-       March:
-       Apr:
-       May: 30 kg / 100.8 kg / 236.7 kg
-       June:
-       July: no data
-       Aug:
-       Sep:
-       Oct: no data
-       Nov:
-       Dec:
-       2022: 1258.8 kg
 """
 import csv
 
 
-def uinput():
+def user_input():
     welcometxt = """
     Keep dates and weight recorded.
     Type:
@@ -44,7 +29,7 @@ def uinput():
     > To see statistics:  "Sum".
     > To close the program (You can type it any time. Data then will be saved partially.):  "Done".
     Have a nice day!
-    Type:  """
+    I/Sum/Done, What is your choice:  """
     usr_input = input(f'{welcometxt}')
     while True:
         try:
@@ -59,16 +44,18 @@ def uinput():
                     date_weight_sum()
                     # to do the summary calculations
                 else:
-                    uinput()
+                    user_input()
         except ValueError:
             print('Please input numbers only.')
-            uinput()
+            user_input()
 
     ###
+
 
 def cc(data):
     print(f'cc(data): {data}')
     print(f'cc(data): {type(data)}')
+
 
 date_weight_dict = {}
 
@@ -122,7 +109,7 @@ def d_w_inputs() -> dict:
                     date_weight_sum()
                 elif int(month) > 12 or int(month) < 1:
                     print('Please input numbers  between 1 and 12 only.')
-                    uinput()
+                    user_input()
 
             year = input('Year:  ')
             if year in year:
@@ -154,11 +141,10 @@ def d_w_inputs() -> dict:
 
         except ValueError:
             print('Please input numbers only.')
-            uinput()
+            user_input()
 
 
 ###
-
 
 
 def date_weight_sum():
@@ -182,7 +168,7 @@ def date_weight_sum():
 ###
 
 def run_program():
-    uinput()
+    user_input()
     d_w_inputs()
 
 

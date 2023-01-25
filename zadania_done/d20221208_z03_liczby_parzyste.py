@@ -1,8 +1,12 @@
-# zadanie 3:
-# liczby parzyste
-#     • program prosi o podanie liczby
-#     • zwraca liczby parzyste większe od 0 do liczby podanej przez użytkownika (nie większe)
-#     • podaje ile tych liczb jest
+"""2022_12_08
+
+zadanie 3:
+liczby parzyste
+    • program prosi o podanie liczby
+    • zwraca liczby parzyste większe od 0 do liczby podanej przez użytkownika (nie większe)
+    • podaje ile tych liczb jest
+"""
+
 
 def even_numbers():
     user_input = int(input('Please type the number (bigger than 0):  '))
