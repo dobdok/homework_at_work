@@ -84,12 +84,6 @@ class TicTacToe:
             return win
         return False
 
-        # for A in self.board:
-        #     for item in A:
-        #         if item == '-':
-        #             return False
-        # return True
-
     def is_board_filled(self):
         for A in self.board:
             for item in A:
