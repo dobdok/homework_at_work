@@ -1,10 +1,10 @@
 """
 Napisz program, który będzie symulował zachowanie struktury danych typu "stos"
 
-    do implementacji wykorzystaj podejście obiektowe ---------- done
+    do implementacji wykorzystaj podejście obiektowe ---------- zadania_done
     stos musi przechowywać swój aktualny stan TODO
-    możemy dodawać elementy do stosu ---------- done
-    możemy pobierać elementy ze stosu ---------- done
+    możemy dodawać elementy do stosu ---------- zadania_done
+    możemy pobierać elementy ze stosu ---------- zadania_done
 
 """
 

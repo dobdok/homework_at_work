@@ -1,9 +1,11 @@
-# zadanie 4:
-# zgadywanie liczby
-#     • program ma zaszytą w pamięci liczbę (może być stała, może być losowa)
-#     • pyta użytkownika o zgadnięcie liczby
-#     • kończy działanie programu gdy użytkownik zgadnie liczbę
-#     • jeżeli użytkownik nie zgadnie liczby w 3 próbach, program daje podpowiedzi w postaci, liczba do zgadnięcia jest większa/mniejsza niż ta co podałeś
+"""2022_12_08
+
+zadanie 4:
+zgadywanie liczby
+    • program ma zaszytą w pamięci liczbę (może być stała, może być losowa)
+    • pyta użytkownika o zgadnięcie liczby
+    • kończy działanie programu gdy użytkownik zgadnie liczbę
+    • jeżeli użytkownik nie zgadnie liczby w 3 próbach, program daje podpowiedzi w postaci, liczba do zgadnięcia jest większa/mniejsza niż ta co podałeś"""
 
 
 import random

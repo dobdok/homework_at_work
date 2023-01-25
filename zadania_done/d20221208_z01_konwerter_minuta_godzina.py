@@ -1,9 +1,11 @@
-# zadanie 1:
-# konwerter minuty / godziny
-#     • program pyta użytkownika o rodzaj konwersji
-#     • prosi o podanie wartości do konwersji
-#     • zwraca wynik
+"""2022_12_08
 
+zadanie 1:
+konwerter minuty / godziny
+    • program pyta użytkownika o rodzaj konwersji
+    • prosi o podanie wartości do konwersji
+    • zwraca wynik
+"""
 
 import datetime
 

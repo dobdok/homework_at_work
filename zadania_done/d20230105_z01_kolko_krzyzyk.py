@@ -1,21 +1,21 @@
 """
 Napisz program, który będzie przypominał grę w kółko i krzyżyk
 
-    program rysuje plansze do gry w kółko i krzyżyk -------------- done
+    program rysuje plansze do gry w kółko i krzyżyk -------------- zadania_done
 
     komputer zaczyna rozgrywkę i wstawia "O" w dowolne pole TODO
 
-    program pyta użytkownika gdzie wstawić "X", użytkownik podaje dwie cyfry w formacie A B gdzie A to wiersz a B kolumna -------------- done
+    program pyta użytkownika gdzie wstawić "X", użytkownik podaje dwie cyfry w formacie A B gdzie A to wiersz a B kolumna -------------- zadania_done
 
     program sprawdza czy znak może być wprowadzony we wskazane pole TODO
 
-    program po każdym znaku rysuje aktualny układ planszy  -------------- done
+    program po każdym znaku rysuje aktualny układ planszy  -------------- zadania_done
 
     program po każdym znaku sprawdza czy ktoś nie wygrał rozgrywki  -------------- TODO prawie
 
     program powtarza czynności do wykorzystania wszystkich pól  TODO
 
-    skorzystaj z poznanych funkcji losujących aby program wybierał gdzie wstawić znak  -------------- done
+    skorzystaj z poznanych funkcji losujących aby program wybierał gdzie wstawić znak  -------------- zadania_done
 
     jeżeli nikt nie wygrał a skończyły się wolne pola, program informuje o tym użytkownika  TODO
 

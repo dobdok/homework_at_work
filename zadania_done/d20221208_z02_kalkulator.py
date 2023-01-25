@@ -1,9 +1,13 @@
-# zadanie 2:
-# prosty kalkulator
-#     • program prosi użytkownika o działanie jakie ma wykonać
-#     • prosi o dwie liczby dla tego działania
-#     • zwraca wynik
-#     • program kończy swoje działanie dopiero na życzenie użytkownika a nie po zwróceniu wyniku
+"""2022_12_08
+
+zadanie 2:
+prosty kalkulator
+    • program prosi użytkownika o działanie jakie ma wykonać
+    • prosi o dwie liczby dla tego działania
+    • zwraca wynik
+    • program kończy swoje działanie dopiero na życzenie użytkownika a nie po zwróceniu wyniku
+"""
+
 
 def calculator():
 

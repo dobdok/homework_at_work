@@ -2,25 +2,25 @@
 # zadanie 6:
 # Napisz program/grę który będzie symulował wydostanie się z labiryntu
 
-# program spyta o poziom trudności - łatwy/trudny --------------------------- done
-# program wylosuje labirynt na podstawie poziomu trudności--------------------------- done
+# program spyta o poziom trudności - łatwy/trudny --------------------------- zadania_done
+# program wylosuje labirynt na podstawie poziomu trudności--------------------------- zadania_done
 
-#   poziom łatwy będzie miał 2 możliwości wyboru drogi (w każdym ruchu, np prawo/lewo)--------------------------- done
-#   poziom łatwy będzie potrzebował 5 poprawnych ruchów do wyjścia z labiryntu--------------------------- done
+#   poziom łatwy będzie miał 2 możliwości wyboru drogi (w każdym ruchu, np prawo/lewo)--------------------------- zadania_done
+#   poziom łatwy będzie potrzebował 5 poprawnych ruchów do wyjścia z labiryntu--------------------------- zadania_done
 
 #       poziom trudny będzie miał 2 albo 3 możliwości wyboru (losowanie dla każdego ruchu)
-#       poziom trudny będzie potrzebował 8 poprawnych ruchów do wyjścia z labiryntu--------------------------- done
+#       poziom trudny będzie potrzebował 8 poprawnych ruchów do wyjścia z labiryntu--------------------------- zadania_done
 
-# niepoprawny ruch jest sygnalizowany użytkownikowi i pozostaje on na tym samym "poziomie"--------------------------- done
-# poprawny ruch jest sygnalizowany użytkownikowi i wyświetla się kolejny ruch--------------------------- done
-# program będzie liczył ilość ruchów użytkownika w labiryncie--------------------------- done
+# niepoprawny ruch jest sygnalizowany użytkownikowi i pozostaje on na tym samym "poziomie"--------------------------- zadania_done
+# poprawny ruch jest sygnalizowany użytkownikowi i wyświetla się kolejny ruch--------------------------- zadania_done
+# program będzie liczył ilość ruchów użytkownika w labiryncie--------------------------- zadania_done
 
 
 # wyświetli statystyki:
 
-# ile ruchów wykonał użytkownik--------------------------- done
+# ile ruchów wykonał użytkownik--------------------------- zadania_done
 
-# jak była minimalna ilość ruchów aby wydostać się z labiryntu - dla 5 ruchów to oczywiście 5, dla 8 to 8--------------------------- done
+# jak była minimalna ilość ruchów aby wydostać się z labiryntu - dla 5 ruchów to oczywiście 5, dla 8 to 8--------------------------- zadania_done
 
 # jaka była maksymalna ilość ruchów aby wydostać się z labiryntu - dla poziomu łatwego to 10 (5 ruchów i jak zawsze pierwszy byłby zły to za 10 razem użytkownik by się wydostał, przyjmujemy że jak użytkownik dostanie informacje że wykonany ruch jest niepoprawny to już go nie powtórzy), dla poziomu trudnego maksymalna ilość ruchów jest zależna od wylosowania możliwości na każdym z ruchów
 
