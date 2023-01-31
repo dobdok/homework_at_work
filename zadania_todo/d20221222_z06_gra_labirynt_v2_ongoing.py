@@ -52,19 +52,19 @@ def labirynth_definiowanie():
         easy_game = right_left_move()
 
 
-            if easy_game == labirynth2:
+        if easy_game == labirynth2:
+            ostatni_ruch = True
+            print('level easy ')
+            if moves_good < 5 or moves_all < 11:  # jeszcze dobrze, gra trwa
+                pass
+            elif moves_good == 5 or moves_all < 11:  # koniec, powód wygrana
+                print('')
+                pass
+            elif moves_good < 5 or moves_all == 10:  # koniec, powód przegrana, za duzo ruchow
+                print('')
+                pass
+            else:
                 ostatni_ruch = True
-                print('level easy ')
-                if moves_good < 5 or moves_all < 11:  # jeszcze dobrze, gra trwa
-                    pass
-                elif moves_good == 5 or moves_all < 11:  # koniec, powód wygrana
-                    print('')
-                    pass
-                elif moves_good < 5 or moves_all == 10:  # koniec, powód przegrana, za duzo ruchow
-                    print('')
-                    pass
-                else:
-                    ostatni_ruch = True
 
 
 
