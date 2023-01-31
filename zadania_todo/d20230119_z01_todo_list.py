@@ -42,6 +42,42 @@ while True:
     if column == 'd':
         column = 'DONE'
     print(column)
+
+
+
+    a = Task(description=text, status=column)
+    slownik2 = {a.describe(): a.status}
+    print('wyprintuj index:  ', a.describe()[0])
+    print(type(a.describe()[0]))
+    print(slownik2)
+
+
+
+class Task:
+    __count = 0
+
+    def __init__(self, description, status):
+        self.description = description
+        self.status = status
+        self.id = Task.incr() #python magic method to increment id for every task
+
+    @classmethod
+    def incr(cls): #python magic method to increment id for every task
+        cls.__count += 1
+        return cls.__count
+
+    def describe(self):
+        return f'{self.id} id {self.description}'
+while True:
+    text = input('Wpisz treść zadania:    ')
+    column = input('Do jakiej kolumny dodać [t]odo/in [p]rogress/[d]one:  ').lower()
+    if column == 't':
+        column = 'TODO'
+    if column == 'p':
+        column = 'IN PROGRESS'
+    if column == 'd':
+        column = 'DONE'
+    print(column)
         
 
 
