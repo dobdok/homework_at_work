@@ -15,220 +15,156 @@ aplikacja powinna
         wykorzystać klasy do modelowania danych
 """
 
+import json
+import os
+
+from tabulate import tabulate
+
+
 class Task:
-    __count = 0
+    __count = 0  
 
     def __init__(self, description, status):
         self.description = description
         self.status = status
-        self.id = Task.incr() #python magic method to increment id for every task
+        self.id = Task.incr()
+
+    def __repr__(self):
+        return f' [Desc{self.description}]'
 
     @classmethod
-    def incr(cls): #python magic method to increment id for every task
-        cls.__count += 1
-        return cls.__count
-
-    def describe(self):
-        return f'{self.id} id {self.description}'
-while True:
-    text = input('Wpisz treść zadania:    ')
-    column = input('Do jakiej kolumny dodać [t]odo/in [p]rogress/[d]one:  ').lower()
-    if column == 't':
-        column = 'TODO'
-    if column == 'p':
-        column = 'IN PROGRESS'
-    if column == 'd':
-        column = 'DONE'
-    print(column)
-        
-
-
-    a = Task(description=text, status=column)
-    slownik2 = {a.describe(): a.status}
-    print('wyprintuj index:  ', a.describe()[0])
-    print(type(a.describe()[0]))
-    print(slownik2)
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-# from tabulate import tabulate
-
-# jakie dzialanie, dodanie, usuniecie, edit etc
-# wybor kolumny
-
-class Welcome:
-    input("""Welcome in TO-DO LIST !
-You can:
-[S]earch Tasks
-[E]dit
-[A]dd Tasks
-[D]elete Tasks
-[Q]uit
-Just type the letter in the brackets.
-My action:  """)
-
-
-
-
-
-class Task:
-    __count = 0
-
-    def __init__(self, description, status):
-        self.description = description
-        self.status = status
-        self.id = Task.incr()  # python magic method to increment id for every task
+    def set_count(cls, val):
+        cls.__count = val
 
     @classmethod
-    def incr(cls):  # python magic method to increment id for every task
-        cls.__count += 1
-        return cls.__count
+    def incr(cls):
+        with open(TaskManager.DB_FILE_PATH, 'r') as f:
+            file = json.load(f)
+            __count = Task.set_count(int(max(file.keys())))
+            cls.__count += 1
+            return cls.__count
 
     def describe(self):
         return f'{self.id} id {self.description}'
 
 
-text = input('moje zadanie  ')
-column = input('jaka kolumna  ')
-a = Task(description=text, status=column)
+class TaskManager:
+    DB_FILE_PATH = 'todo_list_2.json'
+
+    def __init__(self):
+        self._task_dict = self._load_state_from_file(self.DB_FILE_PATH)
+
+    def _load_state_from_file(self, filepath):
+        if not os.path.exists(filepath):
+            return {}
+
+        with open(filepath, 'r') as f:
+            temp = {}
+            file = json.load(f)
+            for task in file.values():
+                desc, column = task
+                t = Task(desc, column)
+                temp[t.id] = t
+
+            return temp
+
+    def _print_visual_table(self):
+        pass
+        # TODO = []
+        # IN_PROGRESS = []
+        # DONE = []
+        #
+        # with open('todo_list.json', 'a') as f:
+        #     for line in f.readlines():
+        #         if 'DONE' in line:
+        #             DONE.append(line)
+        #         elif 'IN PROGRESS' in line:
+        #             IN_PROGRESS.append(line)
+        #         elif 'TODO' in line:
+        #             TODO.append(line)
+        #
+        # dict_example = {
+        #     "TODO": TODO,
+        #     "IN_PROGRESS": IN_PROGRESS,
+        #     "DONE": DONE
+        #     }
+
+        # visualisation = tabulate(dict_example, headers=["TODO", "IN_PROGRESS", "DONE"], tablefmt="fancy_outline")
+        # print(visualisation)
+
+    def _save_state_to_file(self, filepath):
+        dict_to_save = {
+            k: [v.description, v.status]
+            for k, v in self._task_dict.items()
+            }
+        with open(filepath, 'r+') as f:
+            file_data = json.load(f)
+            print(file_data, 'file_data')   # working on it
+            file_data.update(dict_to_save)
+            f.seek(0)
+            json.dump(file_data, f, indent=4)
 
 
-def dodawanie():
-    while True:
-        slownik2 = {a.describe(): a.status}
-        # print('wyprintuj index:  ', a.describe()[0])
-        # print(type(a.describe()[0]))
-        # print(slownik2)
-        # return {a.describe(): a.status}
-        return metoda_zbiera(slownik2)
 
 
-def metoda_zbiera(**kwargs):
-    print(kwargs)
+    def _exit_program(self):
+        exit()
+
+    def _print_dict(self):
+        print(self._task_dict)
+
+    def _add_task(self):
+        text = input('Wpisz treść zadania: ').lower()
+        column = input(
+            """Do jakiej kolumny dodać
+        [t]odo
+        in [p]rogress
+        [d]one
+          """
+            ).lower()
+        if column not in ('t', 'p', 'd'):
+            raise ValueError('wrong value')
+        task = Task(description=text, status=column)
+        self._task_dict[task.id] = task
+        self._save_state_to_file(self.DB_FILE_PATH)
+
+    def _show_singl_task(self):
+        pass
+
+    def _edit_task(self):
+        pass
+
+    def _delete_task(self):
+        pass
+
+    @property
+    def command_list(cls):
+        return {
+            'x': {'desc': 'stop/exit', 'func': cls._exit_program},
+            's': {'desc': 'show TODO\'s table', 'func': cls._print_dict},
+            'f': {'desc': 'show a single task', 'func': cls._show_singl_task},
+            'a': {'desc': 'add a new task', 'func': cls._add_task},
+            'e': {'desc': 'edit existing task', 'func': cls._edit_task},
+            'r': {'desc': 'remove task', 'func': cls._delete_task},
+            }
+
+    def print_commands(self):
+        print('Available commands')
+        print(
+            {
+                k: v['desc']
+                for k, v in self.command_list.items()})
+
+    def execute_command(self, inp):
+        return self.command_list.get(inp)['func']
+
+    def run(self):
+        self._print_visual_table()
+        while True:
+            self.print_commands()
+            command = input('Please insert value: ').lower()
+            self.execute_command(command)() 
 
 
-print(metoda_zbiera())
-
-# print('dodawanie', dodawanie())
-# print('slownik2', dodawanie())
-
-
-#
-# nr_index = input('type nr index ')
-# for nr_index in a.describe()[0]:
-#     print(a.describe()[1])
-
-
-# def add_to_dict(wyniki):
-#     dict_all = {
-#         "TODO": [],
-#         "IN PROGRESS": [],
-#         "zadania_done": []
-#         }
-#
-#     input_where = where_modify()
-#     if input_where == "T":
-#         dict_all["TODO"].append(wyniki)
-#     if input_where == "I":
-#         dict_all["IN PROGRESS"].append(wyniki)
-#     if input_where == "D":
-#         dict_all["zadania_done"].append(wyniki)
-#     print(dict_all)
-#
-# def inputs():
-#     my_list = []
-#     id = 0
-#     #  here adding the data to TO DO list
-#     while True:
-#         id += 1
-#         data = input(f"enter your data:  ")
-#         indeksowane_data = "ID_" + str(id) + " " + data   # nadanie inputowi indeksu
-#         print(indeksowane_data)
-#         my_list.append(indeksowane_data)
-#         # print(my_list)
-#         add_to_dict(my_list)
-#
-#
-#
-# def where_modify():
-#     where_modify_inp = input('where to edit todo, in progress, zadania_done').upper()
-#     return where_modify_inp
-
-
-# def dictionaries():
-#     while True:
-#         wejsciowe = inputs()
-#         dict_all = {
-#             "TODO": [wejsciowe],
-#             "IN PROGRESS": [wejsciowe],
-#             "zadania_done": [wejsciowe]
-#             }
-#     return dict_all
-# dictionaries()
-
-# def remove():
-#
-#     my_list = []
-#     id = 0
-#     while True:
-#         id += 1
-#         data = input(f"enter your data:  ")
-#         # nadanie inputowi indeksu
-#         indeksowane_data = "ID_" + str(id) + " " + data
-#         print(indeksowane_data)
-#         my_list.append(indeksowane_data)
-#         print(my_list)
-#         return my_list
-
-# mydict_todo = {"TODO":inputs()}
-# print(mydict_todo)
-#
-# mydict_in_progress = {"IN PROGRESS":inputs()}
-# print(mydict_in_progress)
-#
-# mydict_done = {"zadania_done":inputs()}
-# print(mydict_done)
-
-
-#
-#
-#
-# mydict = {
-#     "TODO": ["ID_11 Alice", "ID_111 Bob", "ID_105 Alan", "ID_055 Max"],
-#     "IN PROGRESS": [],
-#     "zadania_done": ["ID_53 24"]
-#     }
-#
-#
-#
-
-# mydict2 = [mydict_todo, mydict_in_progress, mydict_done]
-# print(tabulate(mydict, headers="keys", tablefmt="rounded_grid"))
-
-#
-# # print(mydict["TODO"][0], mydict["TODO"][2] )
-# # print(mydict["TODO"][:], mydict["TODO"][2] )
-#
-#
-# def search_index():
-#
-#     id = '11'
-#     finded = (f'\n{[s for s in mydict["TODO"][:] if "ID_" + id + " " in s]}')
-#     print(finded)
-#     return finded
-#
-#
-# search_index()
+obj = TaskManager()
+obj.run()
