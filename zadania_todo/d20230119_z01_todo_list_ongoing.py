@@ -22,7 +22,7 @@ from tabulate import tabulate
 
 
 class Task:
-    __count = 0  
+    __count = 0
 
     def __init__(self, description, status):
         self.description = description
@@ -140,13 +140,14 @@ class TaskManager:
     @property
     def command_list(cls):
         return {
+            'a': {'desc': 'add a new task', 'func': cls._add_task},
             'x': {'desc': 'stop/exit', 'func': cls._exit_program},
             's': {'desc': 'show TODO\'s table', 'func': cls._print_dict},
             'f': {'desc': 'show a single task', 'func': cls._show_singl_task},
-            'a': {'desc': 'add a new task', 'func': cls._add_task},
             'e': {'desc': 'edit existing task', 'func': cls._edit_task},
             'r': {'desc': 'remove task', 'func': cls._delete_task},
             }
+
 
     def print_commands(self):
         print('Available commands')
@@ -156,15 +157,25 @@ class TaskManager:
                 for k, v in self.command_list.items()})
 
     def execute_command(self, inp):
-        return self.command_list.get(inp)['func']
+        while True:
+            try:
+                return self.command_list.get(inp)['func']
+            except Exception:
+                print("--> Oops!  That was no valid input.  Try again...\n")
+                obj.run()
 
     def run(self):
         self._print_visual_table()
-        while True:
-            self.print_commands()
-            command = input('Please insert value: ').lower()
-            self.execute_command(command)() 
+        try:
+            while True:
+                self.print_commands()
+                command = input('Please insert value: ').lower()
+                self.execute_command(command)()
+        except Exception:
+            print("--> Oops!  That was no valid input.  Try again...\n")
+            obj.run()
 
 
 obj = TaskManager()
 obj.run()
+
