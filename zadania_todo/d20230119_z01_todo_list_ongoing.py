@@ -16,14 +16,13 @@ aplikacja powinna
 """
 
 
+from tabulate import tabulate
 import json
 import os
 
-from tabulate import tabulate
-
 
 class Task:
-    __count = 0 
+    __count = 0
 
     def __init__(self, description, status):
         self.description = description
@@ -74,8 +73,7 @@ class TaskManager:
         dict_to_save = {
             k: [v.description, v.status]
             for k, v in self._task_dict.items()
-            }
-        # dict comprehension
+            }    # dict comprehension
         with open(filepath, 'w') as f:
             f.write(json.dumps(dict_to_save, indent=4))
 
@@ -83,7 +81,8 @@ class TaskManager:
         exit()
 
     def _print_dict(self):
-        print(self._task_dict)
+        # print(self._task_dict)
+        print(self._print_visual_table())
 
     def _add_task(self):
         text = input('Wpisz treść zadania: ').lower()
@@ -117,13 +116,16 @@ class TaskManager:
         with open('todo_list_2.json') as f:
             x = f.read()
             parsed_json = json.loads(x)
+
             for i in list(parsed_json.values()):
+                    # yield y
+
                 if 'DONE' in i:
-                    DONE.append(i[0])
+                    DONE.append(f'{i[0]}')
                 elif 'IN PROGRESS' in i:
-                    IN_PROGRESS.append(i[0])
+                    IN_PROGRESS.append(f'{i[0]}')
                 elif 'TODO' in i:
-                    TODO.append(i[0])
+                    TODO.append(f'{i[0]}')
 
         dict_example = {
             "TODO": TODO,
@@ -139,10 +141,10 @@ class TaskManager:
     @property
     def command_list(cls):
         return {
+            'a': {'desc': 'add a new task', 'func': cls._add_task},
             'x': {'desc': 'stop/exit', 'func': cls._exit_program},
             's': {'desc': 'show TODO\'s table', 'func': cls._print_dict},
             'f': {'desc': 'show a single task', 'func': cls._show_singl_task},
-            'a': {'desc': 'add a new task', 'func': cls._add_task},
             'e': {'desc': 'edit existing task', 'func': cls._edit_task},
             'r': {'desc': 'remove task', 'func': cls._delete_task},
             't': {'desc': 'TODO column', 'func': cls._delete_task},
@@ -152,10 +154,9 @@ class TaskManager:
 
     def print_commands(self):
         print('Available commands')
-        print({
-                k: v['desc']
-                for k, v in self.command_list.items()
-            })
+        x = {k: v['desc']
+            for k, v in self.command_list.items()}
+        print(tabulate(x.items(), tablefmt="rounded_grid"))
 
     def execute_command(self, inp):
         return self.command_list.get(inp)['func']
@@ -165,7 +166,7 @@ class TaskManager:
         while True:
             self.print_commands()
             command = input('Please insert value: ').lower()
-            self.execute_command(command)()  # -> dla 'x' to sie zamienia w cls._exit_program()
+            self.execute_command(command)()
 
 
 obj = TaskManager()
