@@ -1,173 +1,253 @@
 """
 do napisania program przypominający działaniem listę TODO
 aplikacja do przechowywania zadań wraz ze stanami - TODO, IN PROGRESS, DONE
-
 aplikacja powinna
-    wyświetlać aktualne zadania - można użyć zewnętrznej biblioteki do "rysowania" tabeli
-    dać możliwość dodawania nowych zadań
-    dać możliwość edytowania aktualnych zadań
-    dać możliwość usuwania istniejących zadań
-    zapisywanie stanu do pliku przy kończeniu pracy
-    pobieranie stanu z pliku przy uruchomieniu aplikacji
-    dodać menu mówiące użytkownikowi w jakim miejscu się znajduje/ co wykonuje
-    budowa aplikacji powinna być przemyślana, aplikacja powinna być rozbita na kilka mniejszych modułów / pakietów
-        wykorzystać poznane elementy języka Python
-        wykorzystać klasy do modelowania danych
+wyświetlać aktualne zadania - można użyć zewnętrznej biblioteki do "rysowania" tabeli
+dać możliwość dodawania nowych zadań
+dać możliwość edytowania aktualnych zadań
+dać możliwość usuwania istniejących zadań
+zapisywanie stanu do pliku przy kończeniu pracy
+pobieranie stanu z pliku przy uruchomieniu aplikacji
+dodać menu mówiące użytkownikowi w jakim miejscu się znajduje / co wykonuje
+budowa aplikacji powinna być przemyślana, aplikacja powinna być rozbita na kilka mniejszych modułów / pakietów
+wykorzystać poznane elementy języka Python
+wykorzystać klasy do modelowania danych
 """
 
-
-from tabulate import tabulate
 import json
-import os
+from tabulate import tabulate
 
 
-class Task:
-    __count = 0
+class Ticket:
 
-    def __init__(self, description, status):
-        self.description = description
+    def __init__(self, status, description, id):
         self.status = status
-        self.id = Task.incr()
+        self.description = description
+        self.id = id
 
     def __repr__(self):
-        return f' [Desc{self.description}]'
-        # return f'[Id] {self.id} [Desc{self.description}]'
+        return f"id: {self.id} \n{self.description}"
+
+    def edit_desc(self, changed_desc):
+        self.description = changed_desc
+
+    def edit_status(self, changed_status):
+        self.status = changed_status
+
+    def to_json(self):
+        json_dic = {
+            "Status": self.status,
+            "Description": self.description,
+            "ID": self.id
+            }
+        return json_dic
 
     @classmethod
-    def set_count(cls, val):
-        cls.__count = val
-
-    @classmethod
-    def incr(cls):
-        with open(TaskManager.DB_FILE_PATH, 'r') as f:
-            file = json.load(f)
-            __count = Task.set_count(int(max(file.keys())))
-            cls.__count += 1
-        return cls.__count
-
-    def describe(self):
-        return f'{self.id} id {self.description}'
+    def from_json(cls, json_dict):
+        ticket = cls(
+            status=json_dict['Status'],
+            description=json_dict['Description'],
+            id=json_dict['ID'])
+        return ticket
 
 
-class TaskManager:
-    DB_FILE_PATH = 'todo_list_2.json'
+def save_to_json():
+    todolist_dict = {
+        "TODO": [],
+        "IN PROGRESS": [],
+        "DONE": []
+        }
+    for elem_dict in TODO_list_data:
+        for elem_list in TODO_list_data[elem_dict]:
+            todolist_dict[elem_dict].append(elem_list.to_json())
 
-    def __init__(self):
-        self._task_dict = self._load_state_from_file(self.DB_FILE_PATH)
+    into_file = json.dumps(todolist_dict, indent=4)
+    with open("TODO_List_app.json", "w") as f:
+        f.write(into_file)
 
-    def _load_state_from_file(self, filepath):
-        if not os.path.exists(filepath):
-            return {}
 
-        with open(filepath, 'r') as f:
-            temp = {}
-            file = json.load(f)
-            for task in file.values():
-                desc, column = task
-                t = Task(desc, column)
-                temp[t.id] = t
+def read_file():
+    TODO_list_data = {
+        "TODO": [],
+        "IN PROGRESS": [],
+        "DONE": []
+        }
 
-            return temp
+    try:
+        with open("TODO_List_app.json", "r") as f:
+            from_file = json.load(f)
 
-    def _save_state_to_file(self, filepath):
-        dict_to_save = {
-            k: [v.description, v.status]
-            for k, v in self._task_dict.items()
-            }    # dict comprehension
-        with open(filepath, 'w') as f:
-            f.write(json.dumps(dict_to_save, indent=4))
+        for elem in from_file:
+            for subelem in from_file[elem]:
+                TODO_list_data[elem].append(Ticket.from_json(subelem))
 
-    def _exit_program(self):
-        exit()
+    except FileNotFoundError:
+        print("There is no file with the following name. Check the name of the file.")
+    return TODO_list_data
 
-    def _print_dict(self):
-        # print(self._task_dict)
-        print(self._print_visual_table())
 
-    def _add_task(self):
-        text = input('Wpisz treść zadania: ').lower()
-        column = input(
-            """Do jakiej kolumny dodać
-        [t]odo
-        in [p]rogress
-        [d]one
-          """
-            ).lower()
-        if column not in ('t', 'p', 'd'):
-            raise ValueError('wrong value')
-        task = Task(description=text, status=column)
-        self._task_dict[task.id] = task
-        self._save_state_to_file(self.DB_FILE_PATH)
+def menu_glowne():
+    commands = ["a", "e", "d", "q"]
+    print(
+        """
+What action do you want to take?
+[A]dd new task
+[E]dit
+[D]elete
+[Q]uit
+    """
+        )
+    choice1 = input("Choose action: ").lower()
+    if choice1 not in commands:
+        print("Wrong input. What do you wish to do?")
+        return None
 
-    def _show_singl_task(self):
+    if choice1 == "a":
+        print("Adding new task")
+        columns_manage()
+        new_ticket()
+
+    elif choice1 == "e":
+        print("Editing task")
+        edit()
+
+    elif choice1 == "d":
+        print("Deleting task")
+        delete()
+
+    else:
+        return choice1
+
+
+def columns_manage():
+    global choice2
+    columns = ["1", "2", "3"]
+    print(
+        """Changes should be done in the column:
+    1 - TODO
+    2 - IN PROGRESS
+    3 - DONE"""
+        )
+    choice2 = input("Column nr: ")
+    if choice2 not in columns:
+        print("Wrong input! Please try again!")
+        return columns_manage()
+
+    if choice2 == "1":
+        choice2 = "TODO"
+        print(choice2)
+    elif choice2 == "2":
+        choice2 = "IN PROGRESS"
+        print(choice2)
+    elif choice2 == "3":
+        choice2 = "DONE"
+        print(choice2)
+    return choice2
+
+
+def new_ticket():
+    max_id = max_ID()
+    max_id += 1
+    task_description = input("Input your task description: ")
+
+    ticket = Ticket(status=choice2, description=task_description, id=max_id)
+    if choice2 == "TODO":
+        key = "TODO"
+        TODO_list_data.setdefault(key)
+        TODO_list_data[key].append(ticket)
+
+    elif choice2 == "IN PROGRESS":
+        key = "IN PROGRESS"
+        TODO_list_data.setdefault(key)
+        TODO_list_data[key].append(ticket)
+
+    elif choice2 == "DONE":
+        key = "DONE"
+        TODO_list_data.setdefault(key)
+        TODO_list_data[key].append(ticket)
+
+
+def search(id):
+    for elem in TODO_list_data:
+        for subelem in TODO_list_data[elem]:
+            if subelem.id == int(id):
+                return elem, subelem
+
+def delete():
+    which_id = input("Type id of the ticket to be deleted: ")
+    id = search(which_id)
+    if id == None:
+        print("id out of range, task does not exist. ")
+    else:
+        search_id = TODO_list_data[id[0]].index(id[1])
+        del TODO_list_data[id[0]][search_id]
+
+
+def edit():
+    while True:
+        edit_task = input("Type the id nr of the ticket, or type q to quit application. ").lower()
+        if edit_task == "q":
+            return
+        try:
+            where, task = search(edit_task)
+            break
+        except:
+            print("Task with following id does not exist.")
+
+    print(
+        f"""You are currently editing the ticket: 
+    id: {task.id}
+    Description: {task.description}""")
+
+    column_change = input(f"""
+    1 - TODO
+    2 - IN PROGRESS
+    3 - DONE
+To which column do you want to move the task? If no changes in column, press enter.""")
+    if column_change == "":
         pass
+    if column_change == "1":
+        print("Task moved to TODO column.")
+        task.edit_status("TODO")
+        move = TODO_list_data[where].index(task)
+        TODO_list_data["TODO"].append(task)
+        del TODO_list_data[where][move]
 
-    def _edit_task(self):
+    elif column_change == "2":
+        print("Task moved to IN PROGRESS column.")
+        task.edit_status("IN PROGRESS")
+        move = TODO_list_data[where].index(task)
+        TODO_list_data["IN PROGRESS"].append(task)
+        del TODO_list_data[where][move]
+
+    elif column_change == "3":
+        print("Task moved to DONE column.")
+        task.edit_status("DONE")
+        move = TODO_list_data[where].index(task)
+        TODO_list_data["DONE"].append(task)
+        del TODO_list_data[where][move]
+
+    change_description = input("New task description, if no changes in description, press enter:")
+    if change_description == "":
         pass
-
-    def _delete_task(self):
-        pass
-
-    def _print_visual_table(self):
-        TODO = []
-        IN_PROGRESS = []
-        DONE = []
-
-        with open('todo_list_2.json') as f:
-            x = f.read()
-            parsed_json = json.loads(x)
-
-            for i in list(parsed_json.values()):
-                    # yield y
-
-                if 'DONE' in i:
-                    DONE.append(f'{i[0]}')
-                elif 'IN PROGRESS' in i:
-                    IN_PROGRESS.append(f'{i[0]}')
-                elif 'TODO' in i:
-                    TODO.append(f'{i[0]}')
-
-        dict_example = {
-            "TODO": TODO,
-            "IN_PROGRESS": IN_PROGRESS,
-            "DONE": DONE
-            }
-
-        visualisation = tabulate(dict_example, headers=["TODO", "IN_PROGRESS", "DONE"], tablefmt="fancy_outline")
-        print(visualisation)
+    if change_description != "":
+        task.edit_desc(change_description)
 
 
-
-    @property
-    def command_list(cls):
-        return {
-            'a': {'desc': 'add a new task', 'func': cls._add_task},
-            'x': {'desc': 'stop/exit', 'func': cls._exit_program},
-            's': {'desc': 'show TODO\'s table', 'func': cls._print_dict},
-            'f': {'desc': 'show a single task', 'func': cls._show_singl_task},
-            'e': {'desc': 'edit existing task', 'func': cls._edit_task},
-            'r': {'desc': 'remove task', 'func': cls._delete_task},
-            't': {'desc': 'TODO column', 'func': cls._delete_task},
-            'p': {'desc': 'IN PROGRESS column', 'func': cls._delete_task},
-            'd': {'desc': 'DONE column', 'func': cls._delete_task},
-            }
-
-    def print_commands(self):
-        print('Available commands')
-        x = {k: v['desc']
-            for k, v in self.command_list.items()}
-        print(tabulate(x.items(), tablefmt="rounded_grid"))
-
-    def execute_command(self, inp):
-        return self.command_list.get(inp)['func']
-
-    def run(self):
-        self._print_visual_table()
-        while True:
-            self.print_commands()
-            command = input('Please insert value: ').lower()
-            self.execute_command(command)()
+def max_ID():
+    max_id = 0
+    for elem in TODO_list_data:
+        for subelem in TODO_list_data[elem]:
+            if subelem.id > max_id:
+                max_id = subelem.id
+    return max_id
 
 
-obj = TaskManager()
-obj.run()
+result = ""
+TODO_list_data = read_file()
+while result != "q":
+    print(tabulate(TODO_list_data, headers="keys", tablefmt="rounded_grid"))
+    result = menu_glowne()
+
+
+save_to_json()
