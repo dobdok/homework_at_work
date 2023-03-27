@@ -1,12 +1,13 @@
 """
 Napisz program, który będzie symulował zachowanie struktury danych typu "stos"
 
-    do implementacji wykorzystaj podejście obiektowe ---------- zadania_done
-    stos musi przechowywać swój aktualny stan TODO
-    możemy dodawać elementy do stosu ---------- zadania_done
-    możemy pobierać elementy ze stosu ---------- zadania_done
+    do implementacji wykorzystaj podejście obiektowe
+    stos musi przechowywać swój aktualny
+    możemy dodawać elementy do stosu
+    możemy pobierać elementy ze stosu
 
 """
+
 
 
 class Stos:  # klasa elementu stosu
@@ -26,11 +27,14 @@ class Stos_all:
     def remove(self):  # pobieranie
         if self.top != None:
             self.top = self.top.prev
+            print("Removed")
 
     def check(self):
         if self.top != None:
             return self.top.v
-        return None
+        return 'Empty'
+
+
 
     def if_empty(self):
         if self.top != None:
